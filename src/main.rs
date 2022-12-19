@@ -23,17 +23,35 @@ fn main () {
 
     println!("You want to convert to {temp_input}");
     println!("What temperature would you like to convert?");
-    // variable for temp
+    let mut temp_num = String::new();
 
-    // io std read line
-    // expect
+    io::stdin()
+        .read_line(&mut temp_num)
+        .expect("Failed to read line");
+    
+    let temp_num: f64 = match temp_num.trim().parse() {
+        Ok(temp_num) => temp_num,
+        Err(_) => {
+            println!("Please enter a valid temperature");
+            continue;
+        }
+    };
 
-    // convert temp into int include error hanlding
-
-    // match loop
+    match temp_input.trim() {
+        "Celsius" => println!("{}", ftoc(temp_num)),
+        "Farenheit" => print!("{}", ctof(temp_num)),
+        _ => println!("Temp = {:?}", temp_input)
+    }
+  }
 }
+
+fn ctof(celsius: f64) -> f64 {
+    let fahrenheit = celsius * 9.0 / 5.0 + 32.0;
+    return fahrenheit;
 }
 
-// celsius to farenheit fn
-
-// farenheit to celsius fn
+fn ftoc(fahrenheit: f64) -> f64 {
+    // To convert a temperature from Fahrenheit to Celsius,
+    // subtract 32 and then multiply by 5/9
+    (fahrenheit - 32.0) * 5.0 / 9.0
+}
