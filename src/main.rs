@@ -12,6 +12,10 @@ fn main () {
     io::stdin()
         .read_line(&mut temp_input)
         .expect("Failed to read input");
+        if temp_input.trim() == "exit" {
+            break;
+        }
+
     
     let temp_input = match temp_input.trim() {
         "C" => "Celsius",
@@ -28,6 +32,9 @@ fn main () {
     io::stdin()
         .read_line(&mut temp_num)
         .expect("Failed to read line");
+        if temp_num.trim() == "exit" {
+            break;
+        }
     
     let temp_num: f64 = match temp_num.trim().parse() {
         Ok(temp_num) => temp_num,
